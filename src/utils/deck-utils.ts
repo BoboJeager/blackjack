@@ -1,6 +1,6 @@
 import { Deck } from "../types/deck-types";
 
-class DeckUtils {
+export class DeckUtils {
   static shuffle(deck: Deck): Deck {
     let shuffledDeck = [...deck];
     for (let i = shuffledDeck.length - 1; i > 0; i--) {
