@@ -1,5 +1,5 @@
 <template>
-    <div @click="flipCard" class="relative w-56 h-80 transition-transform transform">
+    <div @click="flipCard" class="relative w-56 h-80 transition-transform transform m-2">
       <div v-if="flipped" class="m-2 absolute inset-0 w-full h-full bg-white backface-hidden shadow-md rounded-md">
         <img class="w-56 h-56 p-2 object-cover m-0 pb-2" :src="suitImage || ''" alt="Card Image" />
         <h1>{{ cardName }}</h1>
