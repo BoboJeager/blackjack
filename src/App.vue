@@ -4,7 +4,7 @@ import Card from "./components/Card.vue";
 
 <template>
   <div class="h-screen w-screen bg-[#2e9860]">
-    <Card />
+    <Card :card="{suit: 'spades', value: '3', weight: 3 }"/>
   </div>
 </template>
 
