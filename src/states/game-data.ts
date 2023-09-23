@@ -58,12 +58,6 @@ export const useGameStore = defineStore({
         this.gameState = 'player_win';
       }
     },
-    reshuffleDeck() {
-        //if poker deck is less than 15 cards, reshuffle
-        if (this.deckStore.pokerDeck.length < 15) {
-            this.deckStore.initializeDeck();
-        }
-    },
     contiueGame(){
         this.gameState = 'initial_deal';
     }

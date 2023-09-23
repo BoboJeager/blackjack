@@ -79,8 +79,10 @@ export const deckStates = defineStore({
     dealCard(): Card {
       return this.pokerDeck.pop() as Card;
     },
-    reshuffle() {
-      this.pokerDeck = this.pokerDeck.concat(this.discardPile);
+    reshuffle(pokerDeck: Deck, discardPile: Deck) {
+        const combinedDeck = [...pokerDeck, ...discardPile];
+        this.shuffleDeck();
+        return combinedDeck;
     },
   },
 });
