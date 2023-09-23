@@ -9,7 +9,7 @@
     >
       <img
         class="m-0 mx-auto mt-3 h-32 w-32 object-cover"
-        :src="suitImage || ''"
+        :src="suitImage"
         alt="Card Image"
       />
       <h1 class="text-center">{{ cardName }}</h1>
@@ -17,7 +17,7 @@
     </div>
     <div
       v-else
-      class="absolute inset-0 mt-2 h-[16rem] rounded-md bg-[url('src/assets/card-back.png')] bg-auto bg-no-repeat shadow-md"
+      class="absolute inset-0 mt-2 h-[16rem] rounded-md bg-[url('/card-back.png')] bg-auto bg-no-repeat shadow-md"
     ></div>
   </div>
 </template>
@@ -26,10 +26,10 @@ import { ref } from "vue";
 import { Card } from "../types/deck-types";
 
 const suitImageList = [
-  "src/assets/Card_club.svg",
-  "src/assets/Card_heart.svg",
-  "src/assets/Card_spade.svg",
-  "src/assets/Card_diamond.svg",
+  '/Card_club.svg',
+  '/Card_heart.svg',
+  '/Card_spade.svg',
+  '/Card_diamond.svg',
 ];
 
 const { card, canFlip, faceUp } = defineProps<{
