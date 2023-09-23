@@ -1,26 +1,41 @@
 <template>
-    <div @click="flipCard" class="relative w-64 h-80 transition-transform transform">
-      <div v-if="flipped" class="absolute inset-0 w-full h-full bg-white backface-hidden">
-        <img class="w-64 h-56 object-cover m-0 pb-2" :src="suitImage || ''" alt="Card Image" />
-        <h1>{{ cardName }}</h1>
-        <h2>{{ cardValue }}</h2>
-      </div>
-      <div v-else class="absolute inset-0 w-full h-full bg-black backface-hidden"></div>
+  <div
+    @click="flipCard"
+    class="relative m-2 h-[16rem] w-48 transform transition-transform shadow-lg"
+  >
+    <div
+      v-if="faceUp"
+      class="backface-hidden content-center absolute inset-0 m-2 h-full w-full rounded-md bg-gray-700 text-white border-blue-500 border-solid border-2 shadow-md items-center"
+    >
+      <img
+        class="m-0 h-32 w-32 mx-auto object-cover mt-3"
+        :src="suitImage || ''"
+        alt="Card Image"
+      />
+      <h1 class="text-center">{{ cardName }}</h1>
+      <h2 class="text-center pt-3">Card Value: {{ cardValue }}</h2>
     </div>
-  </template>
+    <div
+      v-else
+      class="absolute mt-2 h-[16rem] inset-0 rounded-md bg-[url('src/assets/card-back.png')] bg-auto bg-no-repeat shadow-md "
+    ></div>
+  </div>
+</template>
 <script setup lang="ts">
 import { ref } from "vue";
 import { Card } from "../types/deck-types";
 
 const suitImageList = [
-                  "../assets/Card_club.svg",
-                  "../assets/Card_heart.svg", 
-                  "../assets/Card_spade.svg", 
-                  "../assets/Card_diamond.svg"
-                ]
+  "src/assets/Card_club.svg",
+  "src/assets/Card_heart.svg",
+  "src/assets/Card_spade.svg",
+  "src/assets/Card_diamond.svg",
+];
 
-const { card } = defineProps<{
-    card: Card;
+const { card, canFlip, faceUp } = defineProps<{
+  card: Card;
+  canFlip?: boolean;
+  faceUp?: boolean;
 }>();
 
 const setImage = () => {
@@ -28,30 +43,33 @@ const setImage = () => {
     case "clubs":
       return suitImageList[0];
     case "hearts":
-      return suitImageList[0];
+      return suitImageList[1];
     case "spades":
-      return suitImageList[0];
+      return suitImageList[2];
     case "diamonds":
-      return suitImageList[0];
+      return suitImageList[3];
     default:
       return "";
   }
-}
+};
 const suitImage = setImage();
 const cardName = ref(card.value);
 const cardValue = ref(card.weight);
-const flipped = ref(false);
-
+const flipped = ref(faceUp) || false;
 
 const flipCard = () => {
-  flipped.value = !flipped.value;
-}
-
-
+  if (canFlip) flipped.value = !flipped.value;
+};
 </script>
 
 <style scoped>
-.backface-hidden {
-  backface-visibility: hidden;
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 1.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>
