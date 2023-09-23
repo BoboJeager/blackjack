@@ -1,35 +1,44 @@
-import { defineStore } from 'pinia';
+import { defineStore } from 'pinia'; 
 import { Player } from '../types/player-types';
 import { Card } from '../types/deck-types';
+import { CardUtils } from '../utils/card-utils';
+import { deckStates } from './deck-data';
 
 const player1: Player = {
   name: "Player 1",
-  hand: [
-    { suit: "spades", value: "4", weight: 4 } ,
-    { suit: "spades", value: "A", weight: [1, 10, 11] },
-  ] as Card[],
+  hand: [] as Card[],
   score: 0,
 };
 
 const dealer: Player = {
   name: "Dealer",
-  hand: [
-    { suit: "spades", value: "4", weight: 4 },
-    { suit: "spades", value: "A", weight: [1, 10, 11] },
-  ] as Card[],
+  hand: [] as Card[],
+  score: 0,
 };
-
 export const usePlayerStore = defineStore({
-  id: 'player',
-  state: () => ({
-    player1: {} as Player,
-    dealer: {} as Player,
-  }),
-  actions: {
-    initializePlayer() {
-      this.player1 = { ...player1 };
-      this.dealer = { ...dealer };
-    }
-}
-});
+    id: 'player',
+    state: () => ({
+      player1: {} as Player,
+      dealer: {} as Player,
+    }),
+    actions: {
+      initializePlayer() {
+        this.player1 = { ...player1 };
+        this.dealer = { ...dealer };
+      },
+      drawCard(card:Card, player: Player) {
+        if (card) {
+          player.hand.push(card); 
+        }
+      },
+      discardAllCards(player: Player) {
+        return player.hand.splice(0, player.hand.length);
+      },
+      calculateScore(player: Player) {
+        player.score = CardUtils.getTotalScore(player.hand);
+      },
+    },
+  });
+  
+ 
 

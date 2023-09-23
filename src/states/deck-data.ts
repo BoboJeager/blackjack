@@ -1,4 +1,3 @@
-// src/store/deckStore.ts
 import { defineStore } from 'pinia';
 import { Deck } from '../types/deck-types';
 import { Card } from '../types/deck-types';
@@ -10,9 +9,7 @@ export const deckStates = defineStore({
     discardPile: [] as Deck,
   }),
   actions: {
-
     initializeDeck() {
-
       this.pokerDeck = [
         {suit: "spades", value: "2", weight: 2},
         {suit: "spades", value: "3", weight: 3},
@@ -68,24 +65,20 @@ export const deckStates = defineStore({
         {suit: "diamonds", value: "A", weight: [1, 10, 11]},
       ];
     },
-    
     addToDiscardPile(cards: Card[]) {
       for (let card of cards) {
         this.discardPile.push(card);
       }
     },
-
     shuffleDeck() {
       for (let i = this.pokerDeck.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [this.pokerDeck[i], this.pokerDeck[j]] = [this.pokerDeck[j], this.pokerDeck[i]];
       }
     },
-
-    dealCard() {
-      return this.pokerDeck.pop();
+    dealCard(): Card {
+      return this.pokerDeck.pop() as Card;
     },
-
     reshuffle() {
       this.pokerDeck = this.pokerDeck.concat(this.discardPile);
     },

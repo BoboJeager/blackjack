@@ -2,7 +2,7 @@
     <div>
       <Board>
         <template v-slot:dealer>
-          <Player :player="dealerInstance" />
+          <Dealer/>
         </template>
         <template v-slot:player>
           <Player :player="player1Instance" />
@@ -18,6 +18,7 @@
   import { usePlayerStore } from '../states/player-data';
   import { Player as PlayerType } from '../types/player-types';
   import Player from '../components/Player.vue';
+  import Dealer from '../components/Dealer.vue';
   import Board from '../components/Board.vue';
   import DeckPile from '../components/DeckPile.vue';
   
