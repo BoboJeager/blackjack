@@ -1,23 +1,23 @@
 <template>
   <div
     @click="flipCard"
-    class="relative m-2 h-[16rem] w-48 transform transition-transform shadow-lg"
+    class="relative m-2 h-[16rem] w-48 transform shadow-lg transition-transform"
   >
     <div
       v-if="faceUp"
-      class="backface-hidden content-center absolute inset-0 m-2 h-full w-full rounded-md bg-gray-700 text-white border-blue-500 border-solid border-2 shadow-md items-center"
+      class="backface-hidden absolute inset-0 m-2 h-full w-full content-center items-center rounded-md border-2 border-solid border-blue-500 bg-gray-700 text-white shadow-md"
     >
       <img
-        class="m-0 h-32 w-32 mx-auto object-cover mt-3"
+        class="m-0 mx-auto mt-3 h-32 w-32 object-cover"
         :src="suitImage || ''"
         alt="Card Image"
       />
       <h1 class="text-center">{{ cardName }}</h1>
-      <h2 class="text-center pt-3">Card Value: {{ cardValue }}</h2>
+      <h2 class="pt-3 text-center">Card Value: {{ cardValue }}</h2>
     </div>
     <div
       v-else
-      class="absolute mt-2 h-[16rem] inset-0 rounded-md bg-[url('src/assets/card-back.png')] bg-auto bg-no-repeat shadow-md "
+      class="absolute inset-0 mt-2 h-[16rem] rounded-md bg-[url('src/assets/card-back.png')] bg-auto bg-no-repeat shadow-md"
     ></div>
   </div>
 </template>

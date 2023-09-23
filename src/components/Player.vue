@@ -1,40 +1,46 @@
 <template>
-  <div class="text-xl ml-5 border-solid border-2 border-red-500">
+  <div class="ml-5 border-2 border-solid border-red-500 text-xl">
     <div class="m-2">
-    <h1 class="text-xl">{{ player.name }}'s hand</h1>
-    <Transition>
-    <div v-if="player.hand.length > 0" class="flex">
-      <TransitionGroup>
-        <Card
-          v-for="card in player.hand"
-          :key="card.suit && card.value"
-          :card="card"
-          :canFlip="true"
-          :faceUp="true"
-        />
-    </TransitionGroup>
-    </div>
-  </Transition>
-    <div v-if="player.score !== undefined">
-      <div class="flex">
-        <div class="m-2 bg-gray-300 p-2 rounded-xl">
-          <h1>your total card value:</h1>
-          <h2>{{ player.score }}</h2>
+      <h1 class="text-xl">{{ player.name }}'s hand</h1>
+      <Transition>
+        <div v-if="player.hand.length > 0" class="flex">
+          <TransitionGroup>
+            <Card
+              v-for="card in player.hand"
+              :key="card.suit && card.value"
+              :card="card"
+              :canFlip="true"
+              :faceUp="true"
+            />
+          </TransitionGroup>
         </div>
-        <div class="m-2 bg-gray-300 p-2 rounded-xl">
-          <h1>{{ player.name }}'s totalScore:</h1>
-          <h2>{{ player.totalScore }}</h2>
+      </Transition>
+      <div v-if="player.score !== undefined">
+        <div class="flex">
+          <div class="m-2 rounded-xl bg-gray-300 p-2">
+            <h1>your total card value:</h1>
+            <h2>{{ player.score }}</h2>
+          </div>
+          <div class="m-2 rounded-xl bg-gray-300 p-2">
+            <h1>{{ player.name }}'s totalScore:</h1>
+            <h2>{{ player.totalScore }}</h2>
+          </div>
         </div>
+        <button
+          class="m-2 w-32 rounded-full bg-red-500 px-5 py-1"
+          @click="endturn"
+        >
+          Stay
+        </button>
+        <button
+          class="m-2 w-32 rounded-full bg-red-500 px-5 py-1"
+          @click="drawCard"
+        >
+          hit
+        </button>
       </div>
-      <button class="m-2 rounded-full w-32 bg-red-500 px-5 py-1" @click="endturn">
-        Stay
-      </button>
-      <button class="m-2 rounded-full w-32 bg-red-500 px-5 py-1" @click="drawCard">
-        hit
-      </button>
     </div>
   </div>
-</div>
 </template>
 
 <script setup lang="ts">
@@ -98,8 +104,7 @@ const endturn = () => {
 .slide-fade-enter-active {
   transition: all 0.1s ease-in;
 }
-.slide-fade-enter-leave{
+.slide-fade-enter-leave {
   transition: all 0.1s ease-out;
 }
-
 </style>

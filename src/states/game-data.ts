@@ -53,8 +53,8 @@ export const useGameStore = defineStore({
       this.playerStore.dealer.score = 0;
     },
     continueGame() {
-        this.endRound();
-        this.gameState = "initial_deal";
+      this.endRound();
+      this.gameState = "initial_deal";
     },
     endPlayerTurn() {
       this.gameState = "dealer_turn";
@@ -70,9 +70,11 @@ export const useGameStore = defineStore({
       ) {
         // Dealer wins
         this.gameState = "dealer_win";
-      } else if(this.playerStore.player1.score == this.playerStore.dealer.score){
+      } else if (
+        this.playerStore.player1.score == this.playerStore.dealer.score
+      ) {
         this.gameState = "push";
-      } else{
+      } else {
         // Player wins
         this.gameState = "player_win";
       }

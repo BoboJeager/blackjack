@@ -1,17 +1,17 @@
 <template>
-  <div class="text-xl m-3">
+  <div class="m-3 text-xl">
     <h1>Dealer's Hand</h1>
     <div v-if="dealer.hand.length > 0" class="flex">
-    <TransitionGroup>
+      <TransitionGroup>
         <Card
-        v-if="dealer.hand"
-        v-for="(card, index) in dealer.hand"
-        :key="card.suit && card.value"
-        :card="card"
-        :canFlip="true"
-        :faceUp="index === 0 ? true : allfaceUp"
+          v-if="dealer.hand"
+          v-for="(card, index) in dealer.hand"
+          :key="card.suit && card.value"
+          :card="card"
+          :canFlip="true"
+          :faceUp="index === 0 ? true : allfaceUp"
         />
-    </TransitionGroup>
+      </TransitionGroup>
     </div>
     <div v-if="dealer.score !== undefined && dealerTurn">
       <h1>Dealer's Score:</h1>
@@ -67,8 +67,7 @@ const dealerAutomatedDraw = () => {
 .slide-fade-enter-active {
   transition: all 0.1s ease-in;
 }
-.slide-leave{
-    transition: all 0.1s ease-out;
+.slide-leave {
+  transition: all 0.1s ease-out;
 }
-
 </style>

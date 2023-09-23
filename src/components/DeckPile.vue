@@ -33,8 +33,11 @@ let hasReshuffled = false;
 
 onUpdated(() => {
   if (deckStore.pokerDeck.length < 16) {
-    deckStore.pokerDeck = deckStore.reshuffle( deckStore.discardPile, deckStore.pokerDeck);
-    
+    deckStore.pokerDeck = deckStore.reshuffle(
+      deckStore.discardPile,
+      deckStore.pokerDeck
+    );
+
     deckStore.discardPile = [] as Deck;
     hasReshuffled = true;
   } else {
