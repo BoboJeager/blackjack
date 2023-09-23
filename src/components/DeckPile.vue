@@ -29,7 +29,6 @@ deckStore.shuffleDeck();
 const pokerDeck = deckStore.pokerDeck;
 const discardPile = deckStore.discardPile;
 
-let hasReshuffled = false;
 
 onUpdated(() => {
   if (deckStore.pokerDeck.length < 16) {
@@ -37,11 +36,7 @@ onUpdated(() => {
       deckStore.discardPile,
       deckStore.pokerDeck
     );
-
     deckStore.discardPile = [] as Deck;
-    hasReshuffled = true;
-  } else {
-    hasReshuffled = false;
-  }
+  } 
 });
 </script>

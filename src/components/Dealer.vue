@@ -44,11 +44,9 @@ watch(
     }
     if (newGameState === "end_round") {
       gameStore.determineWinner();
-      console.log(gameStore.gameState);
     }
     if (newGameState === "dealer_win" || newGameState === "player_win") {
     }
-    console.log(gameStore.gameState);
   }
 );
 
@@ -59,7 +57,6 @@ const dealerAutomatedDraw = () => {
   gameStore.dealerturn();
   if (gameStore.gameState == "end_round") {
     gameStore.determineWinner();
-    console.log(gameStore.gameState);
   }
 };
 </script>

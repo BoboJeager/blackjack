@@ -80,7 +80,6 @@ watch(
     if (newGameState === "initial_deal") {
       gameStore.initialDeal();
       playerStore.calculateScore(player);
-      console.log(gameStore.gameState);
     }
     if (newGameState === "player_win") {
       if (player.score == 21 && player.hand.length == 2) {
@@ -96,7 +95,6 @@ watch(
 );
 
 const endturn = () => {
-  console.log(useGameStore().gameState);
   useGameStore().endPlayerTurn();
 };
 </script>
