@@ -1,5 +1,5 @@
 <template>
-  <div class="ml-5 border-2 border-solid border-red-500 text-xl">
+  <div class="ml-5 border-2 border-solid border-red-500 text-xl min-h-[50%] min-w-[50%]">
     <div class="m-2">
       <h1 class="text-xl">{{ player.name }}'s hand</h1>
       <Transition>

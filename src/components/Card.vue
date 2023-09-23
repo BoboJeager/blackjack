@@ -1,14 +1,14 @@
 <template>
   <div
     @click="flipCard"
-    class="relative m-2 h-[16rem] w-48 transform shadow-lg transition-transform"
+    class="relative m-2 md:h-[16rem] md:w-48 transform shadow-lg transition-transform sm:h-[11rem] sm:w-28 sm:transform-none"
   >
     <div
       v-if="faceUp"
       class="backface-hidden absolute inset-0 m-2 h-full w-full content-center items-center rounded-md border-2 border-solid border-blue-500 bg-gray-700 text-white shadow-md"
     >
       <img
-        class="m-0 mx-auto mt-3 h-32 w-32 object-cover"
+        class="m-0 mx-auto mt-3 h-32 w-32 object-cover sm:h-[5rem] sm:w-[5rem]"
         :src="suitImage"
         alt="Card Image"
       />
@@ -17,7 +17,7 @@
     </div>
     <div
       v-else
-      class="absolute inset-0 mt-2 h-[16rem] rounded-md bg-[url('/card-back.png')] bg-auto bg-no-repeat shadow-md"
+      class="absolute inset-0 mt-2 lg:h-[16rem] rounded-md bg-[url('/card-back.png')] md:bg-auto bg-no-repeat shadow-md sm:h-[11rem]  "
     ></div>
   </div>
 </template>

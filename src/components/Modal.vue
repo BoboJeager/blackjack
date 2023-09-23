@@ -46,7 +46,6 @@ if (newGame.value) {
 const buttonText = ref("Start New Game");
 
 onMounted(() => {
-  console.log(gameStore.gameState);
   if (gameStore.gameState === "start") {
     newGame.value = true;
   }
@@ -61,7 +60,6 @@ if (gameStore.gameState === "player_win") {
 
 if (gameStore.gameState === "dealer_win") {
   title.value = "You lose";
-  console.log(playerStore.dealer.score);
   buttonText.value = "continue ?";
   newGame.value = false;
 }
