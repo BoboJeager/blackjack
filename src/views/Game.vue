@@ -21,6 +21,8 @@
   import Dealer from '../components/Dealer.vue';
   import Board from '../components/Board.vue';
   import DeckPile from '../components/DeckPile.vue';
+  import { useGameStore } from '../states/game-data';
+  import {watch} from 'vue';
   
   const playerStore = usePlayerStore();
   usePlayerStore().initializePlayer();

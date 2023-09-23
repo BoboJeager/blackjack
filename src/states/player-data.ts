@@ -31,6 +31,9 @@ export const usePlayerStore = defineStore({
           player.hand.push(card); 
         }
       },
+      resetHand(player: Player) {
+        player.hand = [];
+        },
       discardAllCards(player: Player) {
         return player.hand.splice(0, player.hand.length);
       },

@@ -1,8 +1,8 @@
 <template>
     <div>
       <h1>Dealer's Hand</h1>
-      <div v-if="dealer.hand" class="flex">
-        <Card v-for="card in dealer.hand" :card="card" :canFlip="true" />
+      <div v-if="dealer.hand.length > 0" class="flex">
+        <Card v-if="dealer.hand" v-for="card in dealer.hand" :key="card.suit && card.value" :card="card" :canFlip="true" />
       </div>
       <div v-if="dealer.score !== undefined">
         <h1>Dealer's Score:</h1>
@@ -20,11 +20,16 @@
   const dealer = ref(playerStore.dealer);
   
   const gameStore = useGameStore();
-  
+
+
   // Watch for changes in the game state
   watch(() => gameStore.gameState, (newGameState) => {
     if (newGameState === 'dealer_turn') {
       dealerAutomatedDraw();
+    }
+    if (newGameState === 'initial_deal'){
+      gameStore.initialDeal();
+      console.log(gameStore.gameState);
     }
   });
   

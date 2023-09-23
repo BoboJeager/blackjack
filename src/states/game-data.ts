@@ -19,12 +19,12 @@ export const useGameStore = defineStore({
       this.deckStore.initializeDeck();
     },
     initialDeal() {
-      // Deal two cards to the player and the dealer
-      this.deckStore.shuffleDeck();
       this.playerStore.drawCard(this.deckStore.dealCard(), this.playerStore.player1);
       this.playerStore.drawCard(this.deckStore.dealCard(), this.playerStore.dealer);
       this.playerStore.drawCard(this.deckStore.dealCard(), this.playerStore.player1);
       this.playerStore.drawCard(this.deckStore.dealCard(), this.playerStore.dealer);
+      this.playerStore.calculateScore(this.playerStore.player1);
+      this.playerStore.calculateScore(this.playerStore.dealer);
     },
     dealerturn() {
         // Dealer draws cards until their score is at least 16
@@ -36,9 +36,12 @@ export const useGameStore = defineStore({
         this.gameState = 'end_round';
     },
     endRound(){
-        // Discard all cards and reset the game state
-        this.playerStore.discardAllCards(this.playerStore.player1);
-        this.playerStore.discardAllCards(this.playerStore.dealer);
+        // Discard all cards and reset the game state and put into discard pile
+        const playerHand = this.playerStore.discardAllCards(this.playerStore.player1);
+        const dealerHand = this.playerStore.discardAllCards(this.playerStore.dealer);
+        this.deckStore.discardPile.push(...playerHand, ...dealerHand);
+        this.playerStore.player1.score = 0;
+        this.playerStore.dealer.score = 0;
     },
     endPlayerTurn(){
             this.gameState = 'dealer_turn';
@@ -62,7 +65,7 @@ export const useGameStore = defineStore({
         }
     },
     contiueGame(){
-        this.gameState = 'player_turn';
+        this.gameState = 'initial_deal';
     }
   },
 });

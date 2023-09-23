@@ -7,7 +7,7 @@
         </div>
         <div v-if="discardPile.length > 0">
             <h2>Discard Pile</h2>
-              <Card :card="discardPile[0]" :flippedCard="true"/>
+              <Card :card="discardPile[0]" :canFlip="true"/>
         </div>
     </div>
   </template>

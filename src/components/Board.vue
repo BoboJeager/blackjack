@@ -6,7 +6,9 @@
         <div class="flex inset-x-0 bottom-0 absolute">
             <slot name="player"></slot>
         </div>
-        <slot name="deck"></slot>
+        <div class="absolute inset-y-0 right-0">
+            <slot name="deck"></slot>
+        </div>
     </div>
 </template>
 <script setup lang="ts">
