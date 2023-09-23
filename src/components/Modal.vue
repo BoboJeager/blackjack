@@ -5,13 +5,17 @@
 
     <!-- Modal content -->
     <div
-      class="relative z-50 h-[20rem] w-[30rem] rounded-lg bg-white p-8 shadow-lg"
+      class="relative z-50 h-[20rem] w-[30rem] rounded-lg bg-gray-50 p-8 shadow-lg"
     >
       <div class="flex flex-col items-center justify-center">
         <h1 class="text-3xl font-bold">{{ title }}</h1>
-        <div v-if="!newGame">
-          <h2>dealer total: {{ playerStore.dealer.score }}</h2>
-          <h2>Your total: {{ playerStore.player1.score }}</h2>
+        <div class="my-3" v-if="!newGame">
+          <h2 class="my-1 text-center text-xl">
+            Dealer total: {{ playerStore.dealer.score }}
+          </h2>
+          <h2 class="my-1 text-center text-xl">
+            Your total: {{ playerStore.player1.score }}
+          </h2>
         </div>
         <button
           class="mt-10 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"

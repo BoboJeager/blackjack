@@ -27,13 +27,13 @@
           </div>
         </div>
         <button
-          class="m-2 w-32 rounded-full bg-red-500 px-5 py-1"
+          class="m-2 w-32 rounded-xl bg-blue-500 px-5 py-1 shadow-lg hover:bg-blue-700"
           @click="endturn"
         >
           Stay
         </button>
         <button
-          class="m-2 w-32 rounded-full bg-red-500 px-5 py-1"
+          class="m-2 w-32 rounded-xl bg-red-500 px-5 py-1 shadow-lg hover:bg-red-700"
           @click="drawCard"
         >
           hit
