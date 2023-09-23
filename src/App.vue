@@ -8,5 +8,4 @@ import Game from "./views/Game.vue";
   </div>
 </template>
 
-<style scoped lang="ts">
-</style>
+<style scoped lang="ts"></style>

@@ -1,27 +1,41 @@
 <template>
-    <div @click="flipCard" class="relative w-56 h-80 transition-transform transform m-2">
-      <div v-if="flipped" class="m-2 absolute inset-0 w-full h-full bg-white backface-hidden shadow-md rounded-md">
-        <img class="w-56 h-56 p-2 object-cover m-0 pb-2" :src="suitImage || ''" alt="Card Image" />
-        <h1>{{ cardName }}</h1>
-        <h2>{{ cardValue }}</h2>
-      </div>
-      <div v-else class="absolute inset-0  bg-[url('src/assets/card-back.png')] bg-no-repeat bg-contain backface-hidden shadow-md rounded-md"></div>
+  <div
+    @click="flipCard"
+    class="relative m-2 h-80 w-56 transform transition-transform"
+  >
+    <div
+      v-if="faceUp"
+      class="backface-hidden absolute inset-0 m-2 h-full w-full rounded-md bg-white shadow-md"
+    >
+      <img
+        class="m-0 h-56 w-56 object-cover p-2 pb-2"
+        :src="suitImage || ''"
+        alt="Card Image"
+      />
+      <h1>{{ cardName }}</h1>
+      <h2>{{ cardValue }}</h2>
     </div>
-  </template>
+    <div
+      v-else
+      class="backface-hidden absolute inset-0 rounded-md bg-[url('src/assets/card-back.png')] bg-contain bg-no-repeat shadow-md"
+    ></div>
+  </div>
+</template>
 <script setup lang="ts">
 import { ref } from "vue";
 import { Card } from "../types/deck-types";
 
 const suitImageList = [
-                  "src/assets/Card_club.svg",
-                  "src/assets/Card_heart.svg", 
-                  "src/assets/Card_spade.svg", 
-                  "src/assets/Card_diamond.svg"
-                ]
+  "src/assets/Card_club.svg",
+  "src/assets/Card_heart.svg",
+  "src/assets/Card_spade.svg",
+  "src/assets/Card_diamond.svg",
+];
 
-const { card ,canFlip} = defineProps<{
-    card: Card;
-    canFlip?: boolean;
+const { card, canFlip, faceUp } = defineProps<{
+  card: Card;
+  canFlip?: boolean;
+  faceUp?: boolean;
 }>();
 
 const setImage = () => {
@@ -37,19 +51,15 @@ const setImage = () => {
     default:
       return "";
   }
-}
+};
 const suitImage = setImage();
 const cardName = ref(card.value);
 const cardValue = ref(card.weight);
-const flipped = ref(false);
-
+const flipped = ref(faceUp) || false;
 
 const flipCard = () => {
-  if(canFlip)
-    flipped.value = true;
-}
-
-
+  if (canFlip) flipped.value = !flipped.value;
+};
 </script>
 
 <style scoped>

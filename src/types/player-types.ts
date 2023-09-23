@@ -4,4 +4,5 @@ export type Player = {
   name: string;
   hand: Card[];
   score: number;
+  totalScore?: number;
 };
