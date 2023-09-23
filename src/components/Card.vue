@@ -19,8 +19,9 @@ const suitImageList = [
                   "src/assets/Card_diamond.svg"
                 ]
 
-const { card } = defineProps<{
+const { card ,canFlip} = defineProps<{
     card: Card;
+    canFlip?: boolean;
 }>();
 
 const setImage = () => {
@@ -44,7 +45,8 @@ const flipped = ref(false);
 
 
 const flipCard = () => {
-  flipped.value = true;
+  if(canFlip)
+    flipped.value = true;
 }
 
 
