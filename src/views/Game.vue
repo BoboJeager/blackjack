@@ -17,6 +17,7 @@
 <script setup lang="ts">
 import { usePlayerStore } from "../states/player-data";
 import { Player as PlayerType } from "../types/player-types";
+import Modal from "../components/Modal.vue";
 import Player from "../components/Player.vue";
 import Dealer from "../components/Dealer.vue";
 import Board from "../components/Board.vue";

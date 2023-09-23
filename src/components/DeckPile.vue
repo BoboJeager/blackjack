@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div>
-      <h2>Poker Deck</h2>
-      <h2>{{ deckStore.pokerDeck.length }}</h2>
+    <div class="m-2">
+      <h1 class="text-xl">Poker Deck</h1>
+      <h2>Cards left: {{ deckStore.pokerDeck.length }}</h2>
       <Card :card="pokerDeck[0]" />
     </div>
-    <div>
-      <h2>Discard Pile</h2>
-      <h2>{{ deckStore.discardPile.length }}</h2>
+    <div class="m-2 mt-6">
+      <h1 class="text-xl">Discard Pile</h1>
+      <h2>cards: {{ deckStore.discardPile.length }}</h2>
       <Card
         v-if="deckStore.discardPile.length > 0"
         :card="discardPile[0]"
@@ -32,8 +32,9 @@ const discardPile = deckStore.discardPile;
 let hasReshuffled = false;
 
 onUpdated(() => {
-  if (deckStore.pokerDeck.length < 15) {
-    deckStore.pokerDeck = deckStore.reshuffle(pokerDeck, discardPile);
+  if (deckStore.pokerDeck.length < 16) {
+    deckStore.pokerDeck = deckStore.reshuffle( deckStore.discardPile, deckStore.pokerDeck);
+    
     deckStore.discardPile = [] as Deck;
     hasReshuffled = true;
   } else {

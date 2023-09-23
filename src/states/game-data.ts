@@ -14,6 +14,8 @@ export const useGameStore = defineStore({
       this.gameState = "start";
       this.playerStore.initializePlayer();
       this.deckStore.initializeDeck();
+      this.deckStore.shuffleDeck();
+      this.gameState = "initial_deal";
     },
     initialDeal() {
       this.gameState = "initial_deal";
@@ -25,8 +27,6 @@ export const useGameStore = defineStore({
         this.deckStore.dealCard(),
         this.playerStore.dealer
       );
-      this.playerStore.calculateScore(this.playerStore.player1);
-      this.playerStore.calculateScore(this.playerStore.dealer);
     },
     dealerturn() {
       // Dealer draws cards until their score is at least 16
@@ -52,6 +52,10 @@ export const useGameStore = defineStore({
       this.playerStore.player1.score = 0;
       this.playerStore.dealer.score = 0;
     },
+    continueGame() {
+        this.endRound();
+        this.gameState = "initial_deal";
+    },
     endPlayerTurn() {
       this.gameState = "dealer_turn";
     },
@@ -66,7 +70,9 @@ export const useGameStore = defineStore({
       ) {
         // Dealer wins
         this.gameState = "dealer_win";
-      } else {
+      } else if(this.playerStore.player1.score == this.playerStore.dealer.score){
+        this.gameState = "push";
+      } else{
         // Player wins
         this.gameState = "player_win";
       }

@@ -3,7 +3,7 @@ import Game from "./views/Game.vue";
 </script>
 
 <template>
-  <div class="h-screen w-screen bg-[#2e9860]">
+  <div class="h-screen w-screen bg-[#2a955c]">
     <Game />
   </div>
 </template>

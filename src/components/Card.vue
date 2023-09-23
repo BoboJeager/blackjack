@@ -1,23 +1,23 @@
 <template>
   <div
     @click="flipCard"
-    class="relative m-2 h-80 w-56 transform transition-transform"
+    class="relative m-2 h-[16rem] w-48 transform transition-transform shadow-lg"
   >
     <div
       v-if="faceUp"
-      class="backface-hidden absolute inset-0 m-2 h-full w-full rounded-md bg-white shadow-md"
+      class="backface-hidden content-center absolute inset-0 m-2 h-full w-full rounded-md bg-gray-700 text-white border-blue-500 border-solid border-2 shadow-md items-center"
     >
       <img
-        class="m-0 h-56 w-56 object-cover p-2 pb-2"
+        class="m-0 h-32 w-32 mx-auto object-cover mt-3"
         :src="suitImage || ''"
         alt="Card Image"
       />
-      <h1>{{ cardName }}</h1>
-      <h2>{{ cardValue }}</h2>
+      <h1 class="text-center">{{ cardName }}</h1>
+      <h2 class="text-center pt-3">Card Value: {{ cardValue }}</h2>
     </div>
     <div
       v-else
-      class="backface-hidden absolute inset-0 rounded-md bg-[url('src/assets/card-back.png')] bg-contain bg-no-repeat shadow-md"
+      class="absolute mt-2 h-[16rem] inset-0 rounded-md bg-[url('src/assets/card-back.png')] bg-auto bg-no-repeat shadow-md "
     ></div>
   </div>
 </template>
@@ -63,7 +63,13 @@ const flipCard = () => {
 </script>
 
 <style scoped>
-.backface-hidden {
-  backface-visibility: hidden;
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 1.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>
