@@ -66,7 +66,7 @@ export const useGameStore = defineStore({
       if (
         this.playerStore.player1.score > 21 ||
         (this.playerStore.dealer.score <= 21 &&
-          this.playerStore.dealer.score >= this.playerStore.player1.score)
+          this.playerStore.dealer.score > this.playerStore.player1.score)
       ) {
         // Dealer wins
         this.gameState = "dealer_win";
@@ -78,6 +78,7 @@ export const useGameStore = defineStore({
         // Player wins
         this.gameState = "player_win";
       }
+      console.log(this.gameState)
     },
     contiueGame() {
       this.gameState = "initial_deal";

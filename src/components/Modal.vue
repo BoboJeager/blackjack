@@ -17,6 +17,14 @@
             Your total: {{ playerStore.player1.score }}
           </h2>
         </div>
+        <div v-else>
+          <h2 class="my-2 text-">Press Hit to draw a card and Stay to keep your hand</h2>
+          <span
+            >but will cost you -10 points, winning grants you 10 but a black
+            jack grants you 15, if there is a draw it is a push and no one
+            wins</span
+          >
+        </div>
         <button
           class="mt-10 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
           @click.once="gameStart"
@@ -65,7 +73,7 @@ if (gameStore.gameState === "dealer_win") {
 }
 
 if (gameStore.gameState === "push") {
-  title.value = "Push";
+  title.value = "Push no one wins";
   buttonText.value = "continue ?";
   newGame.value = false;
 }
