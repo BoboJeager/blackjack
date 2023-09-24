@@ -1,7 +1,7 @@
 <template>
   <div
     @click="flipCard"
-    class="relative m-2 md:h-[16rem] md:w-48 transform shadow-lg transition-transform sm:h-[11rem] sm:w-28 sm:transform-none"
+    class="relative m-2 transform shadow-lg transition-transform sm:h-[11rem] sm:w-28 sm:transform-none md:h-[16rem] md:w-48 md:text-base"
   >
     <div
       v-if="faceUp"
@@ -12,12 +12,12 @@
         :src="suitImage"
         alt="Card Image"
       />
-      <h1 class="text-center">{{ cardName }}</h1>
+      <h1 class="mt-6 text-center">{{ cardName }}</h1>
       <h2 class="pt-3 text-center">Card Value: {{ cardValue }}</h2>
     </div>
     <div
       v-else
-      class="absolute inset-0 mt-2 lg:h-[16rem] rounded-md bg-[url('/card-back.png')] md:bg-auto bg-no-repeat shadow-md sm:h-[11rem]  "
+      class="absolute inset-0 mt-2 rounded-md bg-[url('/card-back.png')] bg-no-repeat shadow-md sm:h-[11rem] md:h-[16rem] md:bg-auto"
     ></div>
   </div>
 </template>
@@ -26,10 +26,10 @@ import { ref } from "vue";
 import { Card } from "../types/deck-types";
 
 const suitImageList = [
-  '/Card_club.svg',
-  '/Card_heart.svg',
-  '/Card_spade.svg',
-  '/Card_diamond.svg',
+  "/Card_club.png",
+  "/Card_heart.png",
+  "/Card_spade.png",
+  "/Card_diamond.png",
 ];
 
 const { card, canFlip, faceUp } = defineProps<{
