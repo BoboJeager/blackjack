@@ -13,10 +13,6 @@
         />
       </TransitionGroup>
     </div>
-    <div v-if="dealer.score !== undefined && dealerTurn">
-      <h1>Dealer's Score:</h1>
-      <h2>{{ dealer.score }}</h2>
-    </div>
   </div>
 </template>
 
